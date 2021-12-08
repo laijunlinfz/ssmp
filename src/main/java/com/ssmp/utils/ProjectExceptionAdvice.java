@@ -1,8 +1,5 @@
-package com.ssmp.controller.utils;
+package com.ssmp.utils;
 
-import lombok.experimental.StandardException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;

@@ -1,4 +1,4 @@
-package com.ssmp.controller.utils;
+package com.ssmp.utils;
 
 import lombok.Data;
 

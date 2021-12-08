@@ -1,7 +1,7 @@
 package com.ssmp.controller;
 
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.ssmp.controller.utils.R;
+import com.ssmp.utils.R;
 import com.ssmp.domain.Administrator;
 import com.ssmp.dto.AuthParam;
 import com.ssmp.service.IAdministratorService;

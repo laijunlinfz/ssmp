@@ -1,6 +1,6 @@
 package com.ssmp.controller;
 
-import com.ssmp.controller.utils.R;
+import com.ssmp.utils.R;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
