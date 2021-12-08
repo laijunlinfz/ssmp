@@ -19,7 +19,7 @@ public class ProjectExceptionAdvice {
         //通知运维
         //通知开发
         ex.printStackTrace();
-        System.out.println("hhhhhhhhaaaaaaaaaaaaaaaaaaaaa");
+        System.out.println("抛异常了 T_T ExceptionHandler");
         return new R(0, "服务器故障，请稍后再试！");
     }
 

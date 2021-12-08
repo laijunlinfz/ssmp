@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.ssmp.dao.BookDao;
+import com.ssmp.dao.IBookDao;
 import com.ssmp.domain.Book;
 import com.ssmp.service.IBookService;
 import org.apache.logging.log4j.util.Strings;
@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BookServiceImpl extends ServiceImpl<BookDao, Book> implements IBookService {
+public class BookServiceImpl extends ServiceImpl<IBookDao, Book> implements IBookService {
     @Autowired
-    private BookDao bookDao;
+    private IBookDao bookDao;
 
     public boolean saveBook(Book book) {
         return bookDao.insert(book) > 0;

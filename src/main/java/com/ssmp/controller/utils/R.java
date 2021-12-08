@@ -26,12 +26,12 @@ public class R {
     public R(Integer code, String msg){
         this.code = code;
         this.data = null;
-        this.msg = code.equals(1) ? "success" : "fail";
+        this.msg = msg;
     }
 
     public R(String msg){
         this.code = 1;
         this.data = null;
-        this.msg = code.equals(1) ? "success" : "fail";
+        this.msg = msg;
     }
 }

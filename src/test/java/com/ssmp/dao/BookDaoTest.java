@@ -1,6 +1,5 @@
 package com.ssmp.dao;
 
-import com.ssmp.domain.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class BookDaoTest {
 
     @Autowired
-    private BookDao bookDao;
+    private IBookDao bookDao;
 
     @Test
     void testGetById() {
