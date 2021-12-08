@@ -1,0 +1,10 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    druid:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://118.25.172.219:3306/test?serverTimezone=UTC
+      username: test
+      password: Test_account_123
