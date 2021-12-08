@@ -3,7 +3,7 @@ package com.ssmp.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ssmp.controller.utils.R;
 import com.ssmp.domain.Book;
-import com.ssmp.domain.dto.BookQuery;
+import com.ssmp.dto.BookQuery;
 import com.ssmp.service.IBookService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

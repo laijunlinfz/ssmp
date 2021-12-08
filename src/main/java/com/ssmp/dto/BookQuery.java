@@ -1,4 +1,4 @@
-package com.ssmp.domain.dto;
+package com.ssmp.dto;
 
 import com.ssmp.domain.Book;
 import lombok.Data;
