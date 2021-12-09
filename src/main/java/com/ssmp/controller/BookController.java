@@ -1,5 +1,6 @@
 package com.ssmp.controller;
 
+import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.ssmp.utils.R;
 import com.ssmp.domain.Book;
@@ -14,7 +15,7 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
-@RequestMapping("book")
+@RequestMapping("api/book")
 public class BookController {
 
 //    private static final Logger log = LoggerFactory.getLogger(BookController.class);
@@ -44,6 +45,7 @@ public class BookController {
         return new R(result ? 1 : 0);
     }
 
+    @SaCheckLogin
     @GetMapping("{id}")
     public R getBookById(@PathVariable Integer id) {
         Book res = bookService.getBookById(id);

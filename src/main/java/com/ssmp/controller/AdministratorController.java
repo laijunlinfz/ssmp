@@ -1,5 +1,8 @@
 package com.ssmp.controller;
 
+import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ssmp.utils.R;
 import com.ssmp.domain.Administrator;
@@ -45,7 +48,11 @@ public class AdministratorController {
         } else if (result.size() > 1) {
             return new R(4, "error");
         } else {
-            return new R(1, result.get(0));
+            Administrator curAdmin = result.get(0);
+            StpUtil.login(curAdmin.getId());
+            curAdmin.setToken(StpUtil.getTokenValue());
+            administratorService.updateById(curAdmin);
+            return new R(1, curAdmin);
         }
     }
 
