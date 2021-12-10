@@ -1,4 +1,4 @@
-package com.ssmp.utils;
+package com.ssmp.common;
 
 import cn.dev33.satoken.exception.NotLoginException;
 import com.ssmp.common.Result;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 //@ControllerAdvice
 @ResponseBody
-public class ProjectExceptionAdvice {
+public class MyExceptionHandler {
     // token失效
     @ExceptionHandler(NotLoginException.class)
     public Result handleNotLoginException(Exception ex) {
