@@ -1,8 +1,11 @@
 package com.ssmp.domain;
 
+import lombok.Data;
+
 import java.sql.Timestamp;
 
+@Data
 public class BaseEntity {
-    public Timestamp updateAt;
-    public Timestamp createAt;
+    private Timestamp updateAt;
+    private Timestamp createAt;
 }

@@ -13,9 +13,5 @@ import java.util.List;
 public class AdministratorImpl extends ServiceImpl<IAdministratorDao, Administrator> implements IAdministratorService {
     @Autowired
     IAdministratorDao administratorDao;
-
-    public List<Administrator> getAdministratorOneByParam(Administrator param) {
-        QueryWrapper<Administrator> queryWrapper = new QueryWrapper<>(param);
-        return administratorDao.selectList(queryWrapper);
-    }
+//    实现 IAdministratorService 添加的自定义查询
 }

@@ -1,6 +1,7 @@
 package com.ssmp.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.ssmp.common.Result;
 import com.ssmp.common.ResultCode;
@@ -47,13 +48,14 @@ public class AdministratorController {
         } else {
             return Result.fail(ResultCode.PARAM_ERR);
         }
-        List<Administrator> result = administratorService.getAdministratorOneByParam(administrator);
-        if (result.size() == 0) {
+        QueryWrapper<Administrator> queryWrapper = new QueryWrapper<>(administrator);
+        List<Administrator> res = administratorService.list(queryWrapper);
+        if (res.size() == 0) {
             return Result.fail(ResultCode.LOGIN_ERR);
-        } else if (result.size() > 1) {
+        } else if (res.size() > 1) {
             return Result.fail(ResultCode.FAIL);
         } else {
-            Administrator curAdmin = result.get(0);
+            Administrator curAdmin = res.get(0);
             StpUtil.login(curAdmin.getId());
             curAdmin.setToken(StpUtil.getTokenValue());
             administratorService.updateById(curAdmin);
