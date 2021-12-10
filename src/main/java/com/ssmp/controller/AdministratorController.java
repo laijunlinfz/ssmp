@@ -1,15 +1,15 @@
 package com.ssmp.controller;
 
 import cn.dev33.satoken.stp.StpUtil;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
-import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
 import com.baomidou.mybatisplus.core.toolkit.StringUtils;
-import com.ssmp.utils.R;
+import com.ssmp.common.Result;
+import com.ssmp.common.ResultCode;
 import com.ssmp.domain.Administrator;
 import com.ssmp.dto.AuthParam;
 import com.ssmp.service.IAdministratorService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,8 +28,13 @@ public class AdministratorController {
         this.administratorService = administratorService;
     }
 
+    @RequestMapping("administrator/{id}")
+    public Result<Administrator> getAdministratorById(@PathVariable Integer id) {
+        return Result.data(administratorService.getById(id));
+    }
+
     @RequestMapping("login")
-    public R login(@RequestBody AuthParam param) {
+    public Result<Administrator> login(@RequestBody AuthParam param) {
         String phone = param.getPhone();
         String password = param.getPassword();
         String token = param.getToken();
@@ -40,19 +45,19 @@ public class AdministratorController {
             administrator.setPhone(phone);
             administrator.setPassword(password);
         } else {
-            return new R(2, "参数异常");
+            return Result.fail(ResultCode.PARAM_ERR);
         }
         List<Administrator> result = administratorService.getAdministratorOneByParam(administrator);
         if (result.size() == 0) {
-            return new R(3, "账号名或密码错误");
+            return Result.fail(ResultCode.LOGIN_ERR);
         } else if (result.size() > 1) {
-            return new R(4, "error");
+            return Result.fail(ResultCode.FAIL);
         } else {
             Administrator curAdmin = result.get(0);
             StpUtil.login(curAdmin.getId());
             curAdmin.setToken(StpUtil.getTokenValue());
             administratorService.updateById(curAdmin);
-            return new R(1, curAdmin);
+            return Result.data(curAdmin);
         }
     }
 

@@ -1,6 +1,8 @@
 package com.ssmp.utils;
 
 import cn.dev33.satoken.exception.NotLoginException;
+import com.ssmp.common.Result;
+import com.ssmp.common.ResultCode;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -12,32 +14,20 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ProjectExceptionAdvice {
     // token失效
     @ExceptionHandler(NotLoginException.class)
-    public R handleNotLoginException(Exception ex) {
-        //记录日志
-        //通知运维
-        //通知开发
+    public Result handleNotLoginException(Exception ex) {
         ex.printStackTrace();
         System.out.println("抛异常了 - 未登录 T_T ExceptionHandler");
-        return new R(0, "请先登录");
+        return Result.fail(ResultCode.LOGIN_EXPIRED);
     }
 
     // 拦截所有异常
     @ExceptionHandler(Exception.class)
-    public R handleException(Exception ex) {
+    public Result handleException(Exception ex) {
         //记录日志
         //通知运维
         //通知开发
         ex.printStackTrace();
         System.out.println("抛异常了 T_T ExceptionHandler");
-        return new R(0, "服务器故障，请稍后再试！");
+        return Result.fail(ResultCode.ERR);
     }
-
-//    @ExceptionHandler(MethodArgumentNotValidException.class)
-//    public R doException2(Exception ex) {
-//        //记录日志
-//        //通知运维
-//        //通知开发
-//        ex.printStackTrace();
-//        return new R(0, "服务器故障，请稍后再试11！");
-//    }
 }

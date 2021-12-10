@@ -1,6 +1,6 @@
 package com.ssmp.controller;
 
-import com.ssmp.utils.R;
+import com.ssmp.common.Result;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,7 +12,7 @@ public class BookControllerTest {
 
     @Test
     public void testGetById() {
-        R result = bookController.getBookById(1);
+        Result result = bookController.getBookById(1);
         System.out.println("------------------- start");
         System.out.println(result);
         System.out.println("------------------- end");

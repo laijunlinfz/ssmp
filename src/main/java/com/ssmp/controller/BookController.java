@@ -2,7 +2,7 @@ package com.ssmp.controller;
 
 import cn.dev33.satoken.annotation.SaCheckLogin;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.ssmp.utils.R;
+import com.ssmp.common.Result;
 import com.ssmp.domain.Book;
 import com.ssmp.dto.BookQuery;
 import com.ssmp.service.IBookService;
@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
+import java.util.List;
 
 @Slf4j
 @RestController
@@ -27,57 +28,57 @@ public class BookController {
     }
 
     @PostMapping("save")
-    public R saveBook(@RequestBody Book book) {
-        boolean result = bookService.saveBook(book);
-        return new R(result ? 1 : 0);
+    public Result<Boolean> saveBook(@RequestBody Book book) {
+        boolean res = bookService.saveBook(book);
+        return Result.condition(res);
     }
 
     @PostMapping("update")
-    public R updateBook(@RequestBody Book book) {
-        boolean result = bookService.updateBook(book);
-        return new R(result ? 1 : 0);
+    public Result<Boolean> updateBook(@RequestBody Book book) {
+        boolean res = bookService.updateBook(book);
+        return Result.condition(res);
     }
 
     @PostMapping("delete")
-    public R deleteBook(@RequestBody Book book) {
+    public Result<Boolean> deleteBook(@RequestBody Book book) {
         Integer id = book.getId();
-        boolean result = bookService.deleteBook(id);
-        return new R(result ? 1 : 0);
+        boolean res = bookService.deleteBook(id);
+        return Result.condition(res);
     }
 
     @SaCheckLogin
     @GetMapping("{id}")
-    public R getBookById(@PathVariable Integer id) {
+    public Result<Book> getBookById(@PathVariable Integer id) {
         Book res = bookService.getBookById(id);
-        return new R(1, res);
+        return Result.data(res);
     }
 
 //    使用继承自 mybatis plus 的 getById 。 Mybatis Plus NB !
     @GetMapping("test/{id}")
-    public R getBookByIdUseMP(@PathVariable Integer id) {
+    public Result<Book> getBookByIdUseMP(@PathVariable Integer id) {
         Book res = bookService.getById(id);
-        return new R(1, res);
+        return Result.data(res);
     }
 
     @GetMapping("all")
-    public R getAllBook() {
-        return new R(1, bookService.getAllBook());
+    public Result<List<Book>> getAllBook() {
+        return Result.data(bookService.getAllBook());
     }
 
     @GetMapping("{currentPage}/{pageSize}")
-    public R getBookPage(@PathVariable int currentPage, @PathVariable int pageSize) {
-        IPage<Book> result = bookService.getBookPage(currentPage, pageSize);
-        return new R(1, result);
+    public Result<IPage<Book>> getBookPage(@PathVariable int currentPage, @PathVariable int pageSize) {
+        IPage<Book> res = bookService.getBookPage(currentPage, pageSize);
+        return Result.data(res);
     }
 
     @PostMapping("search")
-    public R getBookPage(@Validated @RequestBody BookQuery data) throws IOException {
+    public Result<IPage<Book>> getBookPage(@Validated @RequestBody BookQuery data) throws IOException {
 //        if (true) throw new IOException();
         int currentPage = data.getCurrentPage();
         int pageSize = data.getPageSize();
         Book book = data.getBook();
-        IPage<Book> result = bookService.getBookPage(currentPage, pageSize, book);
-        return new R(1, result);
+        IPage<Book> res = bookService.getBookPage(currentPage, pageSize, book);
+        return Result.data(res);
     }
 
     @GetMapping("/test")
