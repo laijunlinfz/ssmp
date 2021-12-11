@@ -1,7 +1,7 @@
 cd /usr/local/product/project/ssmp
 git pull
-cd /usr/local/product/project/ssmpdeploy
 
+cd /usr/local/product/project/ssmpdeploy
 docker stop ssmpcontainer
 docker rm ssmpcontainer
 docker rmi ssmpimage
