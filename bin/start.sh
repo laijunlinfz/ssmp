@@ -1,3 +1,5 @@
+cd /usr/local/product/project/ssmp
+git pull
 cd /usr/local/product/project/ssmpdeploy
 
 docker stop ssmpcontainer
