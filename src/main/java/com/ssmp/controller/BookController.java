@@ -84,7 +84,7 @@ public class BookController {
     @GetMapping("/test")
     public String test() {
         log.error("err .......");
-        return  "Hello Spring Boot Test12345";
+        return  "Hello Spring Boot Test123456";
     }
 
 }

@@ -10,8 +10,8 @@ cd /usr/local/product/project/ssmp
 git pull
 mvn clean package
 
-\cp /usr/local/product/project/ssmp/bin/Dockerfile /usr/local/product/project/ssmpdeploy/Dockerfile
-\cp /usr/local/product/project/ssmp/target/ssmp.jar /usr/local/product/project/ssmpdeploy/ssmp.jar
+yes|cp /usr/local/product/project/ssmp/bin/Dockerfile /usr/local/product/project/ssmpdeploy/Dockerfile
+yes|cp /usr/local/product/project/ssmp/target/ssmp.jar /usr/local/product/project/ssmpdeploy/ssmp.jar
 
 cd /usr/local/product/project/ssmpdeploy
 docker build -t ssmpimage .
